@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 /**
- * class - main
+ * main - Entry point
  *
  * Description: a C program that Use the function puts
  *
