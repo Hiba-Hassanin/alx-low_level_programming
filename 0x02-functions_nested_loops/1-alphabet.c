@@ -1,11 +1,7 @@
 #include"main.h"
 
 /**
- * main - check the code
- *
- * Description: print_alphabet prints the alphabet(a to z), in lowercas
- *
- * Return:  Always 0
+ *print_alphabet - use the _putchar function to print the letters from a to z
 */
 
 void print_alphabet(void)
