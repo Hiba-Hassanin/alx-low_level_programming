@@ -11,15 +11,17 @@ void print_diagonal(int n)
 	int dia, mov;
 
 	if (n <= 0)
-		_putchar('\n');
-	else
 	{
-		for (dia = 1; dia <= n; dia++)
+		_putchar('\n');
+	}
+
+	for (dia = 1; dia <= n; dia++)
+	{
+		for (mov = 1; mov <= dia; mov++)
 		{
-			for (mov = 1; mov <= dia; mov++)
-				_putchar(' ');
-			_putchar(92);
-			_putchar('\n');
+			_putchar(' ');
 		}
+		_putchar(92);
+		_putchar('\n');
 	}
 }
