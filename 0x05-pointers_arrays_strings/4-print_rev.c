@@ -5,20 +5,19 @@
  *
  * @s: our string input
  *
- * Return: Always 0
+ * Return:Always 0
 */
 
 void print_rev(char *s)
 {
-	int i;
+	int r = 0;
 
-	for (i = 0; s[i] != '\0'; i++)
-	{
-	}
+	while (s[r])
+		r++;
 
-	for (i = i - 1; i >= 0; i--)
+	while (r--)
 	{
-		_putchar(s[i]);
+		_putchar(s[r]);
 	}
 	_putchar('\n');
 }
