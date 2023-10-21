@@ -1,13 +1,13 @@
 #include "main.h"
 
 /**
- * _strncat - the function that concatenates two stringsin the script
+ * *_strncat - a function that concatenates two stringsin the script
  *
  * @dest: uno pointer
  * @src: dos pointer
  * @n: number of bytes from src
  *
- * return: pointer to the resulting string dest
+ * Return: @dest
 */
 
 char *_strncat(char *dest, char *src, int n)
