@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * _strncat - a function that concatenates two strings.
+ * _strncat - the function that concatenates two stringsin the script
  *
  * @dest: uno pointer
  * @src: dos pointer
