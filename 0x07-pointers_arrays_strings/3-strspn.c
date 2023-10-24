@@ -26,7 +26,7 @@ unsigned int _strspn(char *s, char *accept)
 			else if (accept[dia + 1] == '\0')
 				return (na);
 		}
-		s++
+		s++;
 	}
 	return (na);
 }
