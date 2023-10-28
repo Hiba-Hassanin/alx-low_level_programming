@@ -13,22 +13,15 @@
 int main(int argc, char *argv[])
 {
 	int sum = 0;
+	char *c;
 
-	for (int i = 1; i < argc; i++)
+	while (--argc)
 	{
-		for (int j = 0; argv[i][j] != '\0'; j++)
-		{
-			if (argv[i][j] < '0' || argv[i][j] > '9')
-			{
-				printf("Error\n");
-				return (1);
-			}
-		}
-
+		for (c = argv[argc]; *c; c++)
+			if (*c < '0' || *c > '9')
+				return (printf("Erorr\n"), 1);
 		sum += atoi(argv[i]);
 	}
-
 	printf("%d\n", sum);
-
 	return (0);
 }
