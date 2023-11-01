@@ -5,6 +5,7 @@
  * @str: the string
  * Return: NULL if str == NULL or str == ""
 */
+
 char **strtow(char *str)
 {
 	int i, j, count = 0;
@@ -29,7 +30,6 @@ char **strtow(char *str)
 		{
 			int len = strcspn(&str[j], " ");
 			words[i] = malloc((len + 1) * sizeof(char));
-
 			strncpy(words[i++], &str[j], len);
 			j += len - 1;
 		}
