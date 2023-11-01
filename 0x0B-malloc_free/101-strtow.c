@@ -29,6 +29,7 @@ char **strtow(char *str)
 		{
 			int len = strcspn(&str[j], " ");
 			words[i] = malloc((len + 1) * sizeof(char));
+
 			strncpy(words[i++], &str[j], len);
 			j += len - 1;
 		}
