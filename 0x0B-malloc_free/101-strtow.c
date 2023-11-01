@@ -7,7 +7,8 @@
  * Return: NULL if str == NULL or str == ""
 */
 
-char **strtow(char *str) {
+char **strtow(char *str)
+{
 	int i, j, count = 0;
 	char **words;
 
@@ -16,6 +17,9 @@ char **strtow(char *str) {
 
 	for (i = 0; str[i]; i++)
 		count += (str[i] != ' ' && (i == 0 || str[i - 1] == ' '));
+
+	if (count == 0)
+		return (char **)malloc(2 * sizeof(char *));  // Return an array with a single empty string
 
 	words = malloc((count + 1) * sizeof(char *));
 	if (!words)
