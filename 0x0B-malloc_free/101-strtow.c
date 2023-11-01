@@ -9,8 +9,10 @@
  * Return: NULL if str == NULL or str == ""
 */
 
-char **strtow(char *str)
-{
+#include <stdlib.h>
+#include <string.h>
+
+char **strtow(char *str) {
 	int i, j, word_count = 0;
 	char **words = NULL;
 
@@ -22,6 +24,10 @@ char **strtow(char *str)
 		if (str[i] != ' ' && (i == 0 || str[i - 1] == ' ')) {
 			word_count++;
 		}
+	}
+
+	if (word_count == 0) {
+		return NULL;
 	}
 
 	words = (char **)malloc((word_count + 1) * sizeof(char *));
