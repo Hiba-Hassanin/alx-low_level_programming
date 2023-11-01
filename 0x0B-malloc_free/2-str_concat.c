@@ -29,13 +29,15 @@ char *str_concat(char *s1, char *s2)
 	if (conc == NULL)
 		return NULL;
 
-	for (int i = 0; i < l1; i++)
+	int i;
+	for (i = 0; i < l1; i++)
 		conc[i] = s1[i];
 
-	for (int j = 0; j < l2; j++)
+	int j;
+	for (j = 0; j < l2; j++)
 		conc[l1 + j] = s2[j];
 
 	conc[l1 + l2] = '\0';
 
-	return conc;
+	return (conc);
 }
