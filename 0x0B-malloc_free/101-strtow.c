@@ -29,12 +29,16 @@ char **strtow(char *str)
 		if (str[j] != ' ' && (j == 0 || str[j - 1] == ' '))
 		{
 			int len = strcspn(&str[j], " ");
+
 			words[i] = malloc((len + 1) * sizeof(char));
+
 			strncpy(words[i++], &str[j], len);
+
 			j += len - 1;
 		}
 	}
 
 	words[count] = NULL;
+
 	return (words);
 }
