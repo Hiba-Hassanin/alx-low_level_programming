@@ -10,8 +10,7 @@
  * Return: NULL on failure
 */
 
-char *str_concat(char *s1, char *s2)
-{
+char *str_concat(char *s1, char *s2) {
 	char *concatenated;
 	int len1, len2;
 
@@ -25,10 +24,10 @@ char *str_concat(char *s1, char *s2)
 
 	concatenated = malloc((len1 + len2 + 1) * sizeof(char));
 	if (concatenated == NULL)
-		return NULL;
+		return (NULL);
 
 	strcpy(concatenated, s1);
 	strcat(concatenated, s2);
 
-	return concatenated;
+	return (concatenated);
 }
