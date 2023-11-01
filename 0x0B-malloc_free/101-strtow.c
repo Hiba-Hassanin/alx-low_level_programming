@@ -9,6 +9,7 @@
 
 char **strtow(char *str) {
 	int i, j, count = 0;
+	char **words;
 
 	if (!str || !*str)
 		return NULL;
@@ -16,7 +17,7 @@ char **strtow(char *str) {
 	for (i = 0; str[i]; i++)
 		count += (str[i] != ' ' && (i == 0 || str[i - 1] == ' '));
 
-	char **words = malloc((count + 1) * sizeof(char *));
+	words = malloc((count + 1) * sizeof(char *));
 	if (!words)
 		return NULL;
 
