@@ -8,10 +8,11 @@
 */
 
 char **strtow(char *str) {
-	if (!str || !*str)
-		return (NULL);
-
 	int i, j, count = 0;
+
+	if (!str || !*str)
+		return NULL;
+
 	for (i = 0; str[i]; i++)
 		count += (str[i] != ' ' && (i == 0 || str[i - 1] == ' '));
 
