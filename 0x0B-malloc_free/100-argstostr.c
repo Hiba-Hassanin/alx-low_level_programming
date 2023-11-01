@@ -9,20 +9,16 @@
  *
  * Return: NULL if ac == 0 or av == NULL
 */
-#include <stdlib.h>
-#include <string.h>
 
 char *argstostr(int ac, char **av)
 {
+	int i, len, total_len;
+	char *str, *result;
+
 	if (ac == 0 || av == NULL)
 		return (NULL);
 
-	int i;
-	int len;
-	int total_len = ac;
-	char *str;
-	char *result;
-
+	total_len = ac;
 	for (i = 0; i < ac; i++)
 		total_len += strlen(av[i]);
 
