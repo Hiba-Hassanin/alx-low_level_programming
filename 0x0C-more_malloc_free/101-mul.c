@@ -2,24 +2,35 @@
 #include <ctype.h>
 
 /**
- * main - that multiplies two positive numbers
+ * validate_input - first function it validate our input
  *
- * @argc: integer
- * @argv: the list
+ * @num: var
+ *
+ * Return: 1
+*/
+
+int validate_input(char *num)
+{
+	while (*num)
+	{
+		if (!isdigit(*num))
+			return (0);
+		num++;
+	}
+	return (1);
+}
+
+/**
+ * multiply - 2nd function it multiply the numbers
+ *
+ * @num1: first number
+ * @num2: second number
  *
  * Return: 0
 */
 
-int validate_input(char *num) {
-	while (*num) {
-		if (!isdigit(*num))
-			return 0;
-		num++;
-	}
-	return 1;
-}
-
-void multiply(char *num1, char *num2) {
+void multiply(char *num1, char *num2)
+{
 	int len1 = 0, len2 = 0, i, j;
 	int *result;
 
@@ -30,8 +41,10 @@ void multiply(char *num1, char *num2) {
 
 	result = calloc(len1 + len2, sizeof(int));
 
-	for (i = len1 - 1; i >= 0; i--) {
-		for (j = len2 - 1; j >= 0; j--) {
+	for (i = len1 - 1; i >= 0; i--)
+	{
+		for (j = len2 - 1; j >= 0; j--)
+		{
 			int digit1 = num1[i] - '0';
 			int digit2 = num2[j] - '0';
 			int temp = digit1 * digit2 + result[i + j + 1];
@@ -53,18 +66,30 @@ void multiply(char *num1, char *num2) {
 	free(result);
 }
 
-int main(int argc, char *argv[]) {
-	if (argc != 3) {
+/**
+ * main - that multiplies two positive numbers
+ *
+ * @argc: integer
+ * @argv: the list
+ *
+ * Return: 0
+*/
+
+int main(int argc, char *argv[])
+{
+	if (argc != 3)
+	{
 		printf("Error\n");
-		return 98;
+		return (98);
 	}
 
-	if (!validate_input(argv[1]) || !validate_input(argv[2])) {
+	if (!validate_input(argv[1]) || !validate_input(argv[2]))
+	{
 		printf("Error\n");
-		return 98;
+		return (98);
 	}
 
 	multiply(argv[1], argv[2]);
 
-	return 0;
+	return (0);
 }
