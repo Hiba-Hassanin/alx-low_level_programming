@@ -10,61 +10,39 @@
  * Return: 0
 */
 
-int validate_input(char *num) {
-	while (*num) {
-		if (!isdigit(*num))
-			return 0;
-		num++;
+int main(int argc, char *argv[])
+{
+	if (argc != 3)
+	{
+		printf("Error\n");
+		return (98);
 	}
-	return 1;
-}
 
-void multiply(char *num1, char *num2) {
-	int len1 = 0, len2 = 0, i, j;
-	int *result;
+	char *num1 = argv[1];
+	char *num2 = argv[2];
 
-	while (num1[len1])
-		len1++;
-	while (num2[len2])
-		len2++;
-
-	result = calloc(len1 + len2, sizeof(int));
-
-	for (i = len1 - 1; i >= 0; i--) {
-		for (j = len2 - 1; j >= 0; j--) {
-			int digit1 = num1[i] - '0';
-			int digit2 = num2[j] - '0';
-			int temp = digit1 * digit2 + result[i + j + 1];
-
-			result[i + j] += temp / 10;
-			result[i + j + 1] = temp % 10;
+	while (*num1)
+	{
+		if (!isdigit(*num1))
+		{
+			printf("Error\n");
+			return (98);
 		}
+		num1++;
 	}
 
-	i = 0;
-	while (result[i] == 0 && i < len1 + len2 - 1)
-		i++;
-
-	for (; i < len1 + len2; i++)
-		printf("%d", result[i]);
-
-	printf("\n");
-
-	free(result);
-}
-
-int main(int argc, char *argv[]) {
-	if (argc != 3) {
-		printf("Error\n");
-		return 98;
+	while (*num2)
+	{
+		if (!isdigit(*num2))
+		{
+			printf("Error\n");
+			return (98);
+		}
+		num2++;
 	}
 
-	if (!validate_input(argv[1]) || !validate_input(argv[2])) {
-		printf("Error\n");
-		return 98;
-	}
+	unsigned long long int result = strtoull(argv[1], NULL, 10) * strtoull(argv[2], NULL, 10);
+	printf("%llu\n", result);
 
-	multiply(argv[1], argv[2]);
-
-	return 0;
+	return (0);
 }
