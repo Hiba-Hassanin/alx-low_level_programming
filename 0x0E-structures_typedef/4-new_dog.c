@@ -1,4 +1,7 @@
 #include "dog.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 /**
  * init_dog - contain dog info
@@ -10,19 +13,15 @@
  * Return: void
 */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include "dog.h"
-
 dog_t *new_dog(char *name, float age, char *owner)
 {
 	dog_t *new_dog_ptr = malloc(sizeof(dog_t));
 	if (new_dog_ptr == NULL)
 	{
-		return (NULL);
+		return (NULL); /* Return NULL if it fails */
 	}
 
+	/* create the name and owner strings */
 	new_dog_ptr->name = malloc(strlen(name) + 1);
 	new_dog_ptr->owner = malloc(strlen(owner) + 1);
 
