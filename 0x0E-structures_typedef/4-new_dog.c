@@ -3,14 +3,14 @@
 #include <stdlib.h>
 
 /**
- * _lenS - show the string length
+ * _strlen - show the string length
  *
  * @str: the string
  *
  * Return: the string length
 */
 
-int _lenS(const char *str)
+int _strlen(const char *str)
 {
 	int sLen = 0;
 
@@ -20,7 +20,7 @@ int _lenS(const char *str)
 }
 
 /**
- * _copy - this function copy our string
+ * *_strcopy - this function copy our string
  *
  * @src: first
  * @dest: second
@@ -28,7 +28,7 @@ int _lenS(const char *str)
  * Return: @dest
 */
 
-char *_copy(char *dest, char *src)
+char *_strcopy(char *dest, char *src)
 {
 	int co;
 
@@ -60,22 +60,22 @@ dog_t *new_dog(char *name, float age, char *owner) {
 	if (dog == NULL)
 		return (NULL);
 
-	dog->name = malloc(sizeof(char) * (_lenS(name) + 1));
+	dog->name = malloc(sizeof(char) * (_strlen(name) + 1));
 	if ((*dog).name == NULL) {
 		free(dog);
 		return (NULL);
 	}
 
-	dog->owner = malloc(sizeof(char) * (_lenS(owner) + 1));
+	dog->owner = malloc(sizeof(char) * (_strlen(owner) + 1));
 	if ((*dog).owner == NULL) {
 		free(dog->owner);
 		free(dog);
 		return (NULL);
 	}
 
-	dog->name = _copy(dog->name, name);
+	dog->name = _strcopy(dog->name, name);
 	dog->age = age;
-	dog->owner = _copy(dog->owner, owner);
+	dog->owner = _strcopy(dog->owner, owner);
 
 	return (dog);
 }
