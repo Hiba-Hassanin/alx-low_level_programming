@@ -15,13 +15,17 @@
 
 dog_t *new_dog(char *name, float age, char *owner)
 {
+	if (name == NULL || owner == NULL)
+	{
+		return (NULL);
+	}
+
 	dog_t *new_dog_ptr = malloc(sizeof(dog_t));
 	if (new_dog_ptr == NULL)
 	{
-		return (NULL); /* Return NULL if it fails */
+		return (NULL);
 	}
 
-	/* create the name and owner strings */
 	new_dog_ptr->name = malloc(strlen(name) + 1);
 	new_dog_ptr->owner = malloc(strlen(owner) + 1);
 
