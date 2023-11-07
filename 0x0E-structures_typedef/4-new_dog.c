@@ -4,7 +4,7 @@
 #include "dog.h"
 
 /**
- * new_dog - contain dog info
+ * *new_dog - contain dog info
  *
  * @name: the dog name
  * @age: the dog age
