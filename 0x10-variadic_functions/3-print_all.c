@@ -82,20 +82,15 @@ void print_all(const char * const format, ...)
 
 		while (tokens[j].token)
 		{
-			if (*tokens[j].token == format[i])
+			if (format[i] == tokens[j].token[0])
 			{
-				tokens[j].f(ap);
-				if (format[i + 1])
-					printf(", ");
-				break;
+				tokens[j].f(separator, ap);
+				separator = ", ";
 			}
 			j++;
 		}
-
 		i++;
 	}
-
-	va_end(ap);
-
 	printf("\n");
+	va_end(ap);
 }
