@@ -1,5 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "lists.h"
 
 /**
@@ -8,33 +6,36 @@
  *
  * Return: The number of nodes in the list.
  */
+
 size_t print_listint_safe(const listint_t *head)
 {
-	const listint_t *slow, *quick;
-	size_t calc = 0;
+	const listint_t *current = head, *loop_node = NULL;
+	size_t count = 0;
 
-	slow = head;
-	quick = head;
-
-	while (slow != NULL && quick != NULL && quick->next != NULL)
+	while (current != NULL)
 	{
-		printf("[%p] %d\n", (void *)slow, slow->n);
-		calc++;
-		slow = slow->next;
-		quick = quick->next->next;
+		printf("[%p] %d\n", (void *)current, current->n);
+		count++;
 
-		if (slow == quick)
+		if (current > current->next)
 		{
-			printf("-> [%p] %d\n", (void *)slow, slow->n);
-			exit(98);
+			loop_node = current->next;
+			printf("-> [%p] %d\n", (void *)loop_node, loop_node->n);
+			break;
+		}
+
+		current = current->next;
+	}
+
+	if (loop_node != NULL)
+	{
+		while (current != loop_node)
+		{
+			printf("[%p] %d\n", (void *)current, current->n);
+			count++;
+			current = current->next;
 		}
 	}
 
-	if (slow != NULL)
-	{
-		printf("[%p] %d\n", (void *)slow, slow->n);
-		calc++;
-	}
-
-	return (calc);
+	return (count);
 }
