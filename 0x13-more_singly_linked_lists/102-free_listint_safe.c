@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include "lists.h"
 
 /**
@@ -9,30 +10,30 @@
 
 size_t free_listint_safe(listint_t **h)
 {
-	listint_t *current, *temp;
+	listint_t *current, *next;
 	size_t count = 0;
 
 	if (h == NULL || *h == NULL)
 		return (count);
 
 	current = *h;
+	*h = NULL;
+
 	while (current != NULL)
 	{
-		if (current <= current->next)
+		next = current->next;
+
+		if (current <= next)
 		{
-			temp = current->next;
 			free(current);
 			count++;
 			break;
 		}
 
-		temp = current->next;
 		free(current);
 		count++;
-		current = temp;
+		current = next;
 	}
-
-	*h = NULL;
 
 	return (count);
 }
