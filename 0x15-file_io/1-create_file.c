@@ -7,14 +7,14 @@
  * Return: the length of the string
  */
 
-int _strlen(char *s)
+int _strlen(char *str)
 {
 	int length = 0;
 
-	if (!s)
+	if (!str)
 		return (0);
 
-	while (*s++)
+	while (*str++)
 		length++;
 	return (length);
 }
