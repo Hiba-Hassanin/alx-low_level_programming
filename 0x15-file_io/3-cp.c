@@ -1,9 +1,9 @@
 #include "main.h"
 
 /**
- * handle_error - Handles and displays the appropriate error message.
- * @code: The error code.
- * @file: The name of the file.
+ * handle_error - Handles the error message
+ * @code: The error code
+ * @file: The name of the file
  */
 
 void handle_error(int code, const char *file)
@@ -11,16 +11,16 @@ void handle_error(int code, const char *file)
 	switch (code)
 	{
 		case 97:
-			dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
+			fprintf(stderr, "Usage: cp file_from file_to\n");
 			break;
 		case 98:
-			dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file);
+			fprintf(stderr, "Error: Can't read from file %s\n", file);
 			break;
 		case 99:
-			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file);
+			fprintf(stderr, "Error: Can't write to %s\n", file);
 			break;
 		case 100:
-			dprintf(STDERR_FILENO, "Error: Can't close fd %s\n", file);
+			fprintf(stderr, "Error: Can't close fd %s\n", file);
 			break;
 		default:
 			break;
