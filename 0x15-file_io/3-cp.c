@@ -27,35 +27,20 @@ int main(int argc, char **argv)
 		dprintf(STDERR_FILENO, ERR_NOREAD, argv[1]), exit(98);
 	fd_to = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC, PERMISSIONS);
 	if (fd_to == -1)
-	{
-		dprintf(STDERR_FILENO, ERR_NOWRITE, argv[2]);
-		exit(99);
-	}
+		dprintf(STDERR_FILENO, ERR_NOWRITE, argv[2]), exit(99);
 
 	while ((bytes_r_w = read(fd_from, buffer, READ_BUF_SIZE)) > 0)
 		if (write(fd_to, buffer, bytes_r_w) != bytes_r_w)
-		{
-			dprintf(STDERR_FILENO, ERR_NOWRITE, argv[2]);
-			exit(99);
-		}
+			dprintf(STDERR_FILENO, ERR_NOWRITE, argv[2]), exit(99);
 	if (bytes_r_w == -1)
-	{
-		dprintf(STDERR_FILENO, ERR_NOREAD, argv[1]);
-		exit(98);
-	}
+		dprintf(STDERR_FILENO, ERR_NOREAD, argv[1]), exit(98);
 
 	fd_from = close(fd_from);
 	fd_to = close(fd_to);
 	if (fd_from)
-	{
-		dprintf(STDERR_FILENO, ERR_NOCLOSE, fd_from);
-		exit(100);
-	}
+		dprintf(STDERR_FILENO, ERR_NOCLOSE, fd_from), exit(100);
 	if (fd_to)
-	{
-		dprintf(STDERR_FILENO, ERR_NOCLOSE, fd_from);
-		exit(100);
-	}
+		dprintf(STDERR_FILENO, ERR_NOCLOSE, fd_from), exit(100);
 
 	return (EXIT_SUCCESS);
 }
