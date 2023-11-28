@@ -15,7 +15,6 @@
 #include <errno.h>
 
 #define READ_BUF_SIZE 1024
-#define BUF_SIZE 1024
 
 int _putchar(char c);
 int _strlen(char *str);
