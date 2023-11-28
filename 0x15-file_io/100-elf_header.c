@@ -34,12 +34,14 @@ typedef struct {
 void read_header(const char *filename, ElfHeader *header)
 {
 	int fd = open(filename, O_RDONLY);
-	if (fd == -1) {
+	if (fd == -1)
+	{
 		perror("open");
 		exit(98);
 	}
 
-	if (read(fd, header, sizeof(ElfHeader)) != sizeof(ElfHeader)) {
+	if (read(fd, header, sizeof(ElfHeader)) != sizeof(ElfHeader))
+	{
 		perror("read");
 		close(fd);
 		exit(98);
