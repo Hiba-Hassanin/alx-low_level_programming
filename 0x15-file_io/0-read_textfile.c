@@ -1,8 +1,4 @@
 #include "main.h"
-#include <fcntl.h>
-#include <stdlib.h>
-
-#define READ_BUF_SIZE 1024
 
 /**
  * read_textfile - reads a file and prints to the POSIX standard output
@@ -14,8 +10,9 @@
 
 ssize_t read_textfile(const char *filename, size_t letters)
 {
-	int fd, bytes_read, bytes_written;
-	char buffer[READ_BUF_SIZE];
+	int fd;
+	ssize_t bytes_r_w;
+	char buffer[READ_BUF_SIZE * 8];
 
 	if (filename == NULL)
 		return (0);
@@ -24,20 +21,20 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	if (fd == -1)
 		return (0);
 
-	bytes_read = read(fd, buffer, letters);
-	if (bytes_read == -1)
+	bytes_r_w = read(fd, buffer, letters);
+	if (bytes_r_w == -1)
 	{
 		close(fd);
 		return (0);
 	}
 
-	bytes_written = write(STDOUT_FILENO, buffer, bytes_read);
-	if (bytes_written == -1 || (size_t)bytes_written != (size_t)bytes_read)
+	bytes_r_w = write(STDOUT_FILENO, buffer, bytes_r_w);
+	if (bytes_r_w == -1 || (size_t)bytes_r_w != (size_t)letters)
 	{
 		close(fd);
 		return (0);
 	}
 
 	close(fd);
-	return (bytes_written);
+	return (bytes_r_w);
 }
