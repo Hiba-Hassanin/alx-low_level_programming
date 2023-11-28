@@ -30,11 +30,13 @@ int _strlen(char *str)
 int create_file(const char *filename, char *text_content)
 {
 	int fd;
-	ssize_t bytes_r_w = 0, the_length = _strlen(text_content);
+	ssize_t bytes_r_w = 0;
+	ssize_t the_length = _strlen(text_content);
+	mode_t read_write_pr = S_IRUSR | S_IWUSR;
 
 	if (!filename)
 		return (-1);
-	fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR);
+	fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, read_write_pr);
 	if (fd == -1)
 		return (-1);
 	if (the_length)
