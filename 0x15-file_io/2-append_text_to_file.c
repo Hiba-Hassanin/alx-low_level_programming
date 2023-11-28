@@ -1,0 +1,55 @@
+#include "main.h"
+
+/**
+ * _strlen - calculates the length of a string
+ * @str: the string
+ *
+ * Return: the length of the string
+ */
+
+int _strlen(char *s)
+{
+	int length = 0;
+
+	if (!s)
+		return (0);
+
+	while (*s++)
+		length++;
+	return (length);
+}
+
+/**
+ * append_text_to_file - appends text at the end of a file
+ * @filename: The name of the file
+ * @text_content: The content to append to the file
+ *
+ * Return: 1 on success, -1 on failure
+ */
+
+int append_text_to_file(const char *filename, char *text_content)
+{
+	int fd;
+	ssize_t bytes_r_w = 0;
+	size_t the_length = 0;
+
+	if (filename == NULL)
+		return (-1);
+
+	if (text_content != NULL)
+		the_length = _strlen(text_content);
+
+	fd = open(filename, O_WRONLY | O_APPEND);
+	if (fd == -1)
+		return (-1);
+
+	if (the_length > 0)
+		bytes_r_w = write(fd, text_content, the_length);
+
+	close(fd);
+
+	if (bytes_r_w == -1 || (size_t)bytes_r_w != the_length)
+		return (-1);
+
+	return (1);
+}

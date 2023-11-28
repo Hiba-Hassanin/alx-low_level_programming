@@ -9,14 +9,14 @@
  * Return: the length of the string
  */
 
-int _strlen(char *str)
+int _strlen(char *s)
 {
 	int length = 0;
 
-	if (!str)
+	if (!s)
 		return (0);
 
-	while (*str++)
+	while (*s++)
 		length++;
 	return (length);
 }
