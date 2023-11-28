@@ -14,8 +14,7 @@
 int create_file(const char *filename, char *text_content)
 {
 	int fd, bytes_written;
-	int permissions = S_IRUSR | S_IWUSR;
-	mode_t old_umask;
+	mode_t permissions = S_IRUSR | S_IWUSR;
 
 	if (filename == NULL)
 		return (-1);
