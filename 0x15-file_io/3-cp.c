@@ -66,7 +66,7 @@ int main(int argc, char **argv)
 	}
 	if (close(fd_to) == -1)
 	{
-		dprintf(STDERR_FILENO, ERR_NOCLOSE, fd_to);
+		dprintf(STDERR_FILENO, ERR_NOCLOSE, fd_from);
 		exit(100);
 	}
 
