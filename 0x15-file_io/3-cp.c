@@ -5,6 +5,8 @@
 #include <stdlib.h>
 #include <errno.h>
 
+#define BUF_SIZE 1024
+
 /**
  * handle_error - Handles and displays the appropriate error message.
  * @code: The error code.
@@ -15,16 +17,16 @@ void handle_error(int code, const char *file)
 	switch (code)
 	{
 		case 97:
-			fprintf(stderr, "Usage: cp file_from file_to\n");
+			dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
 			break;
 		case 98:
-			fprintf(stderr, "Error: Can't read from file %s\n", file);
+			dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file);
 			break;
 		case 99:
-			fprintf(stderr, "Error: Can't write to file %s\n", file);
+			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file);
 			break;
 		case 100:
-			fprintf(stderr, "Error: Can't close fd %s\n", file);
+			dprintf(STDERR_FILENO, "Error: Can't close fd %s\n", file);
 			break;
 		default:
 			break;
@@ -85,7 +87,7 @@ int copy_file(const char *file_from, const char *file_to)
 		handle_error(100, file_to);
 	}
 
-	return (0);
+	return 0;
 }
 
 /**
@@ -104,5 +106,5 @@ int main(int argc, char *argv[])
 
 	copy_file(argv[1], argv[2]);
 
-	return (0);
+	return 0;
 }
