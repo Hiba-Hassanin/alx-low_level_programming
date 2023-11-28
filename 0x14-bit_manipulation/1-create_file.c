@@ -1,6 +1,4 @@
 #include "main.h"
-#include <fcntl.h>
-#include <sys/stat.h>
 
 /**
  * _strlen - calculates the length of a string
