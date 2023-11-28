@@ -5,59 +5,39 @@
 #include <stdlib.h>
 #include <errno.h>
 
-/**
- * handle_error - Handles and displays the appropriate error message.
- * @code: The error code.
- * @file: The name of the file.
- */
-void handle_error(int code, const char *file)
+#define BUF_SIZE 1024
+#define PERMISSIONS (S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH)
+#define USAGE "Usage: cp file_from file_to\n"
+#define ERR_NOREAD "Error: Can't read from file %s\n"
+#define ERR_NOWRITE "Error: Can't write to %s\n"
+#define ERR_NOCLOSE "Error: Can't close fd %s\n"
+
+int main(int argc, char *argv[])
 {
-	switch (code)
+	if (argc != 3)
 	{
-		case 97:
-			dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
-			break;
-		case 98:
-			dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file);
-			break;
-		case 99:
-			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file);
-			break;
-		case 100:
-			dprintf(STDERR_FILENO, "Error: Can't close fd %s\n", file);
-			break;
-		default:
-			break;
+		dprintf(STDERR_FILENO, USAGE);
+		exit(97);
 	}
 
-	exit(code);
-}
-
-/**
- * copy_file - Copies the content of a file to another file.
- * @file_from: The name of the source file.
- * @file_to: The name of the destination file.
- *
- * Return: 0 on success, or exits with the appropriate error code on failure.
- */
-int copy_file(const char *file_from, const char *file_to)
-{
 	int fd_from, fd_to;
 	ssize_t bytes_read, bytes_written;
 	char buffer[BUF_SIZE];
 
 	/* Open the source file */
-	fd_from = open(file_from, O_RDONLY);
+	fd_from = open(argv[1], O_RDONLY);
 	if (fd_from == -1)
 	{
-		handle_error(98, file_from);
+		dprintf(STDERR_FILENO, ERR_NOREAD, argv[1]);
+		exit(98);
 	}
 
 	/* Open the destination file */
-	fd_to = open(file_to, O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR);
+	fd_to = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC, PERMISSIONS);
 	if (fd_to == -1)
 	{
-		handle_error(99, file_to);
+		dprintf(STDERR_FILENO, ERR_NOWRITE, argv[2]);
+		exit(99);
 	}
 
 	/* Copy the contents from source to destination */
@@ -66,43 +46,28 @@ int copy_file(const char *file_from, const char *file_to)
 		bytes_written = write(fd_to, buffer, bytes_read);
 		if (bytes_written == -1 || bytes_written != bytes_read)
 		{
-			handle_error(99, file_to);
+			dprintf(STDERR_FILENO, ERR_NOWRITE, argv[2]);
+			exit(99);
 		}
 	}
 
 	if (bytes_read == -1)
 	{
-		handle_error(98, file_from);
+		dprintf(STDERR_FILENO, ERR_NOREAD, argv[1]);
+		exit(98);
 	}
 
 	/* Close file descriptors */
 	if (close(fd_from) == -1)
 	{
-		handle_error(100, file_from);
+		dprintf(STDERR_FILENO, ERR_NOCLOSE, argv[1]);
+		exit(100);
 	}
 	if (close(fd_to) == -1)
 	{
-		handle_error(100, file_to);
+		dprintf(STDERR_FILENO, ERR_NOCLOSE, argv[2]);
+		exit(100);
 	}
-
-	return (0);
-}
-
-/**
- * main - Entry point of the program.
- * @argc: The number of command-line arguments.
- * @argv: An array of command-line argument strings.
- *
- * Return: 0 on success.
- */
-int main(int argc, char *argv[])
-{
-	if (argc != 3)
-	{
-		handle_error(97, NULL);
-	}
-
-	copy_file(argv[1], argv[2]);
 
 	return (0);
 }
