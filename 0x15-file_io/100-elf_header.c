@@ -25,7 +25,14 @@ typedef struct {
 	unsigned short e_shstrndx;
 } ElfHeader;
 
-void read_header(const char *filename, ElfHeader *header) {
+/**
+ * read_header - reads the ELF header
+ * @filename: the name of the file
+ * @header: a pointer
+*/
+
+void read_header(const char *filename, ElfHeader *header)
+{
 	int fd = open(filename, O_RDONLY);
 	if (fd == -1) {
 		perror("open");
@@ -41,8 +48,18 @@ void read_header(const char *filename, ElfHeader *header) {
 	close(fd);
 }
 
-int main(int argc, char *argv[]) {
-	if (argc != 2) {
+/**
+ * main - entry point
+ * @argc: the number of arguments
+ * @argv: an array of argument
+ *
+ * Return: 0 if successful
+ */
+
+int main(int argc, char *argv[])
+{
+	if (argc != 2)
+	{
 		fprintf(stderr, "Usage: %s elf_filename\n", argv[0]);
 		exit(98);
 	}
@@ -50,7 +67,8 @@ int main(int argc, char *argv[]) {
 	ElfHeader header;
 	read_header(argv[1], &header);
 
-	if (memcmp(header.e_ident, ELF_MAGIC, 4) != 0) {
+	if (memcmp(header.e_ident, ELF_MAGIC, 4) != 0)
+	{
 		fprintf(stderr, "Not an ELF file\n");
 		exit(98);
 	}
@@ -63,5 +81,5 @@ int main(int argc, char *argv[]) {
 	printf("Type: %u\n", header.e_type);
 	printf("Entry point address: %#x\n", header.e_entry);
 
-	return 0;
+	return (0);
 }
