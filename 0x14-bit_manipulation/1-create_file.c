@@ -1,7 +1,6 @@
 #include "main.h"
 #include <fcntl.h>
 #include <sys/stat.h>
-#include <string.h>
 
 /**
  * _strlen - calculates the length of a string
@@ -37,23 +36,13 @@ int create_file(const char *filename, char *text_content)
 	size_t the_length = _strlen(text_content);
 	mode_t permissions = S_IRUSR | S_IWUSR;
 
-	if (filename == NULL)
+	if (!filename)
 		return (-1);
-
 	fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, permissions);
 	if (fd == -1)
 		return (-1);
-
-	if (text_content != NULL)
-	{
+	if (the_length)
 		bytes_r_w = write(fd, text_content, the_length);
-		if (bytes_r_w == -1 || (size_t)bytes_r_w != the_length)
-		{
-			close(fd);
-			return (-1);
-		}
-	}
-
 	close(fd);
-	return (1);
+	return (bytes_r_w == the_length ? 1 : -1);
 }
