@@ -5,8 +5,6 @@
 #include <stdlib.h>
 #include <errno.h>
 
-#define BUF_SIZE 1024
-
 /**
  * handle_error - Handles and displays the appropriate error message.
  * @code: The error code.
@@ -87,7 +85,7 @@ int copy_file(const char *file_from, const char *file_to)
 		handle_error(100, file_to);
 	}
 
-	return 0;
+	return (0);
 }
 
 /**
@@ -106,5 +104,5 @@ int main(int argc, char *argv[])
 
 	copy_file(argv[1], argv[2]);
 
-	return 0;
+	return (0);
 }
