@@ -1,6 +1,5 @@
 #include "main.h"
 
-#define READ_BUF_SIZE 1024
 #define PERMISSIONS (S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH)
 #define USAGE "Usage: cp file_from file_to\n"
 #define ERR_NOREAD "Error: Can't read from file %s\n"
