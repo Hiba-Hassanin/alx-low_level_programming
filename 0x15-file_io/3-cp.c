@@ -61,12 +61,12 @@ int main(int argc, char **argv)
 
 	if (close(fd_from)
 	{
-		dprintf(STDERR_FILENO, ERR_NOCLOSE, fd_from);
+		dprintf(STDERR_FILENO, ERR_NOCLOSE, argv[1]);
 		exit(100);
 	}
 	if (close(fd_to)
 	{
-		dprintf(STDERR_FILENO, ERR_NOCLOSE, fd_from);
+		dprintf(STDERR_FILENO, ERR_NOCLOSE, argv[2]);
 		exit(100);
 	}
 
