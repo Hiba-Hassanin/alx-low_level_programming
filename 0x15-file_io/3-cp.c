@@ -1,4 +1,9 @@
 #include "main.h"
+#include <fcntl.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <errno.h>
 
 #define READ_BUF_SIZE 1024
 
