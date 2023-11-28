@@ -1,3 +1,4 @@
+#include "main.h"
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdio.h>
@@ -64,5 +65,5 @@ int main(int argc, char **argv)
 		exit(100);
 	}
 
-	return EXIT_SUCCESS;
+	return (EXIT_SUCCESS);
 }
