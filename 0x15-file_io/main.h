@@ -8,6 +8,7 @@
 #include <limits.h>
 #include <unistd.h>
 #include <fcntl.h>
+#include <stddef.h>
 
 #define READ_BUF_SIZE 1024
 
