@@ -59,15 +59,16 @@ int main(int argc, char **argv)
 		exit(98);
 	}
 
-	if (close(fd_from))
+	fd_from = close(fd_from);
+	fd_to = close(fd_to);
+	if (fd_from)
 	{
-		dprintf(STDERR_FILENO, ERR_NOCLOSE, argv[1]);
+		dprintf(STDERR_FILENO, ERR_NOCLOSE, fd_from);
 		exit(100);
 	}
-
-	if (close(fd_to))
+	if (fd_to)
 	{
-		dprintf(STDERR_FILENO, ERR_NOCLOSE, argv[2]);
+		dprintf(STDERR_FILENO, ERR_NOCLOSE, fd_from);
 		exit(100);
 	}
 
