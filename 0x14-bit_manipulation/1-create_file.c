@@ -9,14 +9,17 @@
  *
  * Return: the length of the string
  */
+
 size_t _strlen(const char *str)
 {
 	size_t length = 0;
 
-	while (str[length] != '\0')
-		length++;
+	if (!str)
+		return (0);
 
-	return length;
+	while (*str++)
+		length++;
+	return (length);
 }
 
 /**
@@ -29,8 +32,10 @@ size_t _strlen(const char *str)
 
 int create_file(const char *filename, char *text_content)
 {
-	int fd, bytes_written;
-	mode_t permissions = S_IRUSR | S_IWUSR; /* rw------- */
+	int fd;
+	ssize_t bytes_r_w = 0;
+	size_t the_length = _strlen(text_content);
+	mode_t permissions = S_IRUSR | S_IWUSR;
 
 	if (filename == NULL)
 		return (-1);
@@ -41,8 +46,8 @@ int create_file(const char *filename, char *text_content)
 
 	if (text_content != NULL)
 	{
-		bytes_written = write(fd, text_content, _strlen(text_content));
-		if (bytes_written == -1)
+		bytes_r_w = write(fd, text_content, the_length);
+		if (bytes_r_w == -1 || (size_t)bytes_r_w != the_length)
 		{
 			close(fd);
 			return (-1);
@@ -52,4 +57,3 @@ int create_file(const char *filename, char *text_content)
 	close(fd);
 	return (1);
 }
-
