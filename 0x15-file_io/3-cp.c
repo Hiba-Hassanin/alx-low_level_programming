@@ -12,6 +12,13 @@
 #define ERR_NOWRITE "Error: Can't write to %s\n"
 #define ERR_NOCLOSE "Error: Can't close fd %s\n"
 
+/**
+ * main - entry point
+ * @argc: the number of arguments
+ * @argv: an array of argument
+ * Return: 0 if successful
+*/
+
 int main(int argc, char **argv)
 {
 	int fd_from = 0, fd_to = 0;
