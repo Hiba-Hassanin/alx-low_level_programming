@@ -53,7 +53,6 @@ int main(int argc, char **argv)
 			exit(99);
 		}
 	}
-
 	if (bytes_r_w == -1)
 	{
 		dprintf(STDERR_FILENO, ERR_NOREAD, argv[1]);
