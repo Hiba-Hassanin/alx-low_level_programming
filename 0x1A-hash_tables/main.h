@@ -13,7 +13,6 @@
  * @sprev: A pointer to the previous element of the sorted linked list
  * @snext: A pointer to the next element of the sorted linked list
  */
-
 typedef struct shash_node_s
 {
 	char *key;
@@ -33,7 +32,6 @@ typedef struct shash_node_s
  * @shead: A pointer to the first element of the sorted linked list
  * @stail: A pointer to the last element of the sorted linked list
  */
-
 typedef struct shash_table_s
 {
 	unsigned long int size;
@@ -43,6 +41,7 @@ typedef struct shash_table_s
 } shash_table_t;
 
 /* Function prototypes */
+
 shash_table_t *shash_table_create(unsigned long int size);
 int shash_table_set(shash_table_t *ht, const char *key, const char *value);
 char *shash_table_get(const shash_table_t *ht, const char *key);
