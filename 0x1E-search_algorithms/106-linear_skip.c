@@ -8,6 +8,7 @@
  * Return: Pointer to the first node where value is located, or NULL if not
  * found or if head is NULL.
  */
+
 skiplist_t *linear_skip(skiplist_t *list, int value)
 {
 	skiplist_t *current, *express;
