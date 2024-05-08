@@ -1,29 +1,6 @@
 #include "search_algos.h"
 
 /**
- * advanced_binary - Searches for a value
- * in a sorted array using Binary search
- * @array: Pointer to the first element of the array to search in
- * @size: Number of elements in the array
- * @value: Value to search for
- *
- * Return: Index of the first occurrence of value in array,
- * or -1 if not found
- */
-
-int advanced_binary(int *array, size_t size, int value)
-{
-	int index;
-
-	index = rec_search(array, size, value);
-
-	if (index >= 0 && array[index] != value)
-		return (-1);
-
-	return (index);
-}
-
-/**
  * rec_search - Searches for a value
  * in a sorted array of integers using Binary search
  * @array: Pointer to the first element of the array to search in
@@ -64,4 +41,27 @@ int rec_search(int *array, size_t size, int value)
 
 	half++;
 	return (rec_search(array + half, size - half, value) + half);
+}
+
+/**
+ * advanced_binary - Searches for a value
+ * in a sorted array using Binary search
+ * @array: Pointer to the first element of the array to search in
+ * @size: Number of elements in the array
+ * @value: Value to search for
+ *
+ * Return: Index of the first occurrence of value in array,
+ * or -1 if not found
+ */
+
+int advanced_binary(int *array, size_t size, int value)
+{
+	int index;
+
+	index = rec_search(array, size, value);
+
+	if (index >= 0 && array[index] != value)
+		return (-1);
+
+	return (index);
 }
