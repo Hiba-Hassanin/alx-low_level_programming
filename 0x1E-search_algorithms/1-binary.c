@@ -45,7 +45,7 @@ int recursive_binary_search(int *arr, int left, int right, int val)
 
 void print_array(int *arr, int start, int end)
 {
-	int i;
+	int i = 0;
 
 	printf("Searching in array: ");
 	for (i = start; i <= end; i++)
